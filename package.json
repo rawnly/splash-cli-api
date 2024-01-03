@@ -1,0 +1,21 @@
+{
+  "name": "splash-cli-lambda",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@vercel/node": "^3.0.14",
+    "jsdom": "^23.0.1",
+    "undici": "^6.2.1"
+  },
+  "devDependencies": {
+    "@types/jsdom": "^21.1.6",
+    "typescript": "^5.3.3"
+  }
+}
