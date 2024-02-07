@@ -1,6 +1,5 @@
 import { VercelRequest, VercelResponse } from '@vercel/node'
-import { JSDOM } from 'jsdom'
-import { fetch } from 'undici'
+import { Browser } from 'happy-dom'
 
 export default async function handler(
   req: VercelRequest,
@@ -11,16 +10,15 @@ export default async function handler(
   console.log(url)
 
   try {
-    const response = await fetch(url)
+    const browser = new Browser()
+    const page = browser.newPage();
+    const response = await page.goto(url)
 
     if ( response.status !== 200 ) {
-      console.log(`${response.status} ${response.statusText} - redirecting`)
       return res.redirect('https://lambda.splash-cli.app/api')
     }
 
-    const body = await response.text()
-
-    const { window: { document } } = new JSDOM(body);
+    const { mainFrame: { document } } = page
 
     const el = document.querySelector('[itemProp=contentUrl]')
 

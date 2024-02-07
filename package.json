@@ -1,19 +1,18 @@
 {
-  "name": "splash-cli-lambda",
-  "version": "1.0.0",
-  "description": "",
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "name": "splash-cli-api",
+  "version": "1.0.1",
+  "author": "Federico Vitale <mail@fedevitale.dev>",
   "type": "module",
+  "scripts": {
+    "vc:dev": "vercel dev"
+  },
   "dependencies": {
-    "jsdom": "^23.0.1",
-    "undici": "^6.2.1"
+    "happy-dom": "^13.3.8"
   },
   "devDependencies": {
-    "@types/jsdom": "^21.1.6",
     "@types/node": "^20.10.6",
     "@vercel/node": "^3.0.14",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "vercel": "^33.4.1"
   }
 }

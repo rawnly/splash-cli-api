@@ -1,18 +1,23 @@
 import { VercelRequest, VercelResponse } from '@vercel/node'
-import { JSDOM } from 'jsdom'
-import { fetch } from 'undici'
+import { Browser } from 'happy-dom'
 
 export default async function handler(
-  req: VercelRequest,
+  _req: VercelRequest,
   res: VercelResponse
 ) {
   const url = `https://unsplash.com/`
 
   try {
-    const response = await fetch(url)
-    const body = await response.text()
+    const browser = new Browser();
+    const page = browser.newPage()
 
-    const { window: { document } } = new JSDOM(body);
+    const response = await fetch(url)
+    const html = await response.text()
+
+    page.url = url 
+    page.content = html
+
+    const { mainFrame: { document } } = page
 
     const el = document.querySelector('[data-test="editorial-route"] [itemProp=contentUrl]')
 
