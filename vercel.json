@@ -4,6 +4,11 @@
       "source": "/",
       "destination": "/api",
       "permanent": true
+    },
+    {
+      "source": "/api",
+      "destination": "/api/wallpapers",
+      "permanent": true
     }
   ]
 }

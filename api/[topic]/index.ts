@@ -8,14 +8,14 @@ export default async function handler(
 ) {
   const topic = Array.isArray(req.query.topic) ? req.query.topic[0] : req.query.topic
   const url = `https://unsplash.com/t/${topic}`
-  console.log(url)
 
   try {
-    const response = await fetch(url)
+    const response = await fetch(url, {
+      redirect: 'follow'
+    })
 
-    if ( response.status !== 200 ) {
-      console.log(`${response.status} ${response.statusText} - redirecting`)
-      return res.redirect('https://lambda.splash-cli.app/api')
+    if (response.status !== 200) {
+      return res.status(response.status).send(response.statusText)
     }
 
     const body = await response.text()
